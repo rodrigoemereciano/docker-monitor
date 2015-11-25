@@ -5,16 +5,13 @@
 a=`sudo docker ps -q | awk '{print $1}'`
 #a=12315634ad
 #sleep 5
-
-if [ "$a" != " " ]
+n=-10
+if [ -z "$a" ]
 then
-	#echo $a
+	echo $n
 
+else	
 	b=`sudo docker stats --no-stream=true $a| awk '{print $2}' | grep -v "CPU"`
 
 	echo $b|sed 's/\%//'
-fi
-if [ -z "$a" ]
-then
-	echo 'docker inativo!'
 fi
